@@ -1,6 +1,7 @@
-// const User = require('./User');
-// const Product = require('./Product');
-// const Category = require('./Category');
-// const Order = require('./Order');
+const User = require('./User');
+const MTGCard = require('./MTGCard');
+const MTGCollection = require('./MTGCollection');
+const CustomCollection = require('./CustomCollection');
+const CustomItem = require('./CustomItem');
 
-// module.exports = { User, Product, Category, Order };
+module.exports = { User, MTGCard, MTGCollection, CustomCollection, CustomItem};
