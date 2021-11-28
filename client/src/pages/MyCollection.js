@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Login() {
+export default function MyCollection() {
     return (
         <div>
-            Login Page
+            My Collection Page
         </div>
     )
 }
