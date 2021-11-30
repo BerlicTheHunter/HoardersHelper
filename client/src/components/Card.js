@@ -27,6 +27,10 @@ export default function MakeCard({card}) {
           {card.name}
         </Typography>
         <Typography variant="caption" color="text.secondary">
+          Card Set: {card.setName}
+        </Typography>
+        <br/>
+        <Typography variant="caption" color="text.secondary">
           Type: {card.types}
         </Typography>
         <br/>
