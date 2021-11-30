@@ -14,25 +14,42 @@ import { format } from 'date-fns'
 import Avatar from '@material-ui/core/Avatar'
 
 const drawerWidth = 240
+const backgroundColor = '#757778'
+const textColor = '#FCFAFA'
+const accentBlue = '#68D8D6'
+const accentRed = '#7B0828'
 
 const useStyles = makeStyles((theme) => {
   return {
     page: {
-      background: '#f9f9f9',
+      background: backgroundColor,
       width: '100%',
       padding: theme.spacing(3),
+      color: textColor,
+      fontWeight: 500,
     },
     root: {
       display: 'flex',
+      fontWeight: 500,
     },
     drawer: {
       width: drawerWidth,
+      background: backgroundColor,
+      color: textColor,
     },
     drawerPaper: {
       width: drawerWidth,
+      background: backgroundColor,
+      color: textColor,
+      fontWeight: 500,
+    },
+    drawerPaperIcon: {
+      color: accentRed,
     },
     active: {
-      background: '#f4f4f4'
+      background: accentBlue,
+      color: accentRed,
+      fontWeight: 800,
     },
     title: {
       padding: theme.spacing(2),
@@ -40,9 +57,10 @@ const useStyles = makeStyles((theme) => {
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      background: backgroundColor,
     },
     date: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     toolbar: theme.mixins.toolbar,
     avatar: {
@@ -59,22 +77,22 @@ export default function Layout({ children }) {
   const menuItems = [
     {
       text: "Search",
-      icon: <SubjectOutlined color="secondary" />,
+      icon: <SubjectOutlined color="accentRed" />,
       path: "/",
     },
     {
       text: "Login",
-      icon: <AddCircleOutlineOutlined color="secondary" />,
+      icon: <AddCircleOutlineOutlined color="accentRed" />,
       path: "/Login",
     },
     {
       text: "Signup",
-      icon: <AddCircleOutlineOutlined color="secondary" />,
+      icon: <AddCircleOutlineOutlined color="accentRed" />,
       path: "/Signup",
     },
     {
       text: "My Collection",
-      icon: <AddCircleOutlineOutlined color="secondary" />,
+      icon: <AddCircleOutlineOutlined color="accentRed" />,
       path: "/mycollection",
     },
   ];
@@ -119,7 +137,7 @@ export default function Layout({ children }) {
               onClick={() => navigate(item.path)}
               className={location.pathname == item.path ? classes.active : null}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon className={classes.drawerPaperIcon}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
           ))}
