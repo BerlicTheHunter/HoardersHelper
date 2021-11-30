@@ -8,14 +8,14 @@ import Typography from '@mui/material/Typography';
 
 export default function MakeCard({card}) {
   
-  
+
   if(card.imageUrl == undefined) {
     card.imageUrl = "https://i.imgur.com/LdOBU1I.jpg"
   };
   
   return (
     <Card sx={{ maxWidth: 200 }}>
-      <CardMedia
+      <CardMedia 
         component="img"
         height="25%"
         width="auto"
@@ -23,7 +23,7 @@ export default function MakeCard({card}) {
         alt={card.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h6" component="div">
           {card.name}
         </Typography>
         <Typography variant="caption" color="text.secondary">
