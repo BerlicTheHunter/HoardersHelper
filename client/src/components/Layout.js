@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar'
 
 const drawerWidth = 240
 const backgroundColor = '#757778'
+const backgroundMain ='#535455'
 const textColor = '#FCFAFA'
 const accentBlue = '#68D8D6'
 const accentRed = '#7B0828'
@@ -22,8 +23,9 @@ const accentRed = '#7B0828'
 const useStyles = makeStyles((theme) => {
   return {
     page: {
-      background: backgroundColor,
+      background: backgroundMain,
       width: '100%',
+      height: '100%',
       padding: theme.spacing(3),
       color: textColor,
       fontWeight: 500,
@@ -31,6 +33,7 @@ const useStyles = makeStyles((theme) => {
     root: {
       display: 'flex',
       fontWeight: 500,
+      background: backgroundColor,
     },
     drawer: {
       width: drawerWidth,
@@ -57,7 +60,7 @@ const useStyles = makeStyles((theme) => {
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      background: backgroundColor,
+      background: backgroundMain,
     },
     date: {
       flexGrow: 1,
