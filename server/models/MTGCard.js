@@ -8,7 +8,7 @@ const mtgCardSchema = new Schema({
     required: true,
   },
   cmc: {
-    type: Int
+    type: Number,
   },
   colors:{
     type: [String]

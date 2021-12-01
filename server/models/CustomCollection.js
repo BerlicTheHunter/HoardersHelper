@@ -15,6 +15,6 @@ const customSchema = new Schema({
   ]
 });
 
-const CustomCollection = mongoose.model('CustomCollection', orderSchema);
+const CustomCollection = mongoose.model('CustomCollection', customSchema);
 
 module.exports = CustomCollection;
