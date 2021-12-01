@@ -23,6 +23,7 @@
     "@apollo/client": "^3.5.5",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.2.0",
     "graphql": "^16.0.1",
     "react-router-dom": "^6.0.2",
     "switch": "0.0.0"
