@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const CustomCollection = require('./CustomCollection');
+// const CustomCollection = require('./CustomCollection');
 
 
 
@@ -26,11 +26,11 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  customCollection: [CustomCollection.schema],
-  mtgCollection: [
+  // customCollection: [CustomCollection.schema],
+  mtgCard: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'MTG'
+      ref: 'MTGCard'
     }
   ]
 });

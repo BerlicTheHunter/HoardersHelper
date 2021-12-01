@@ -17,4 +17,4 @@ const customSchema = new Schema({
 
 const CustomCollection = mongoose.model('CustomCollection', customSchema);
 
-module.exports = CustomCollection;
+// module.exports = CustomCollection;
