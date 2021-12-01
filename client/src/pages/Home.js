@@ -97,7 +97,7 @@ export default function Home() {
   return (
      
       
-    <Container maxWidth='sm'>
+    <Container maxWidth='xl'>
       <form className={classes.root} noValidate autoComplete="off" onSubmit={handleCardSearch}>
         <TextField 
           id="searchName" 
@@ -106,7 +106,7 @@ export default function Home() {
           variant="standard"
           InputProps={{style: {color: textColor}}}
           color="secondary"
-          Change={(event)=> setSearchName(event.target.value)} 
+          onChange={(event)=> setSearchName(event.target.value)} 
         />
         <TextField className={classes.search}
           id="searchSet" 
