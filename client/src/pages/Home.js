@@ -106,6 +106,7 @@ export default function Home() {
           variant="standard"
           InputProps={{style: {color: textColor}}}
           color="secondary"
+          margin="normal"
           onChange={(event)=> setSearchName(event.target.value)} 
         />
         <TextField className={classes.search}
@@ -113,7 +114,9 @@ export default function Home() {
           label="Search by Card Set" 
           type="search" 
           variant="standard"
+          InputProps={{style: {color: textColor}}}
           color="secondary"
+          margin="normal"
           onChange={(event)=> setSearchSet(event.target.value)} 
         />    
         <Button className={classes.button}

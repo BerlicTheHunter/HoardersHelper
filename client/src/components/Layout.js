@@ -14,8 +14,8 @@ import { format } from 'date-fns'
 import Avatar from '@material-ui/core/Avatar'
 
 const drawerWidth = 240
-const backgroundColor = '#757778'
-const backgroundMain ='#535455'
+const backgroundColor = '#535455'
+const backgroundMain ='#757778'
 const textColor = '#FCFAFA'
 const accentBlue = '#68D8D6'
 const accentRed = '#7B0828'
