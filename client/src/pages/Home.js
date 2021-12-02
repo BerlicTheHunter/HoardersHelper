@@ -47,7 +47,7 @@ export default function Home() {
   
   const handleCardSearch = (event)=>{ 
     event.preventDefault();
-    if(searchName && searchSet){
+    if(searchName || searchSet){
     mtg.card.where({name: searchName, setName: searchSet})
     .then( card => {
       const searchData = card.map((card) => ({
@@ -70,52 +70,6 @@ export default function Home() {
       setCardData(searchData)
       console.log(searchData.length)
     })}
-    else if(searchName != ''){
-      mtg.card.where({name: searchName})
-      .then( card => {
-        const searchData = card.map((card) => ({
-          name: card.name,
-          cmc: card.cmc,
-          colors: card.colors,
-          colorIdentity: card.colorIdentity,
-          type: card.type,
-          types: card.types,
-          subtypes: card.subtypes,
-          set:card.set,
-          setName: card.setName,
-          number:card.number,
-          imageUrl: card.imageUrl,
-          rarity:card.rarity,
-          mvId:card.multiverseid,
-          id:card.id
-        }))
-      setCardData(searchData)
-      console.log(searchData.length)
-      });
-    }
-    else if(searchSet != ''){
-      mtg.card.where({setName: searchSet})
-      .then( card => {
-      const searchData = card.map((card) => ({
-        name: card.name,
-        cmc: card.cmc,
-        colors: card.colors,
-        colorIdentity: card.colorIdentity,
-        type: card.type,
-        types: card.types,
-        subtypes: card.subtypes,
-        set:card.set,
-        setName: card.setName,
-        number:card.number,
-        imageUrl: card.imageUrl,
-        rarity:card.rarity,
-        mvId:card.multiverseid,
-        id:card.id
-        }))
-      setCardData(searchData)
-      console.log(searchData.length)
-      });
-    }
     
   }
   return (
