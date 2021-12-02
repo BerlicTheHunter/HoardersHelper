@@ -80,22 +80,22 @@ export default function Layout({ children }) {
   const menuItems = [
     {
       text: "Search",
-      icon: <SubjectOutlined color="accentRed" />,
+      icon: <SubjectOutlined color="accentBlue" />,
       path: "/",
     },
     {
       text: "Login",
-      icon: <AddCircleOutlineOutlined color="accentRed" />,
+      icon: <AddCircleOutlineOutlined color="accentBlue" />,
       path: "/Login",
     },
     {
       text: "Signup",
-      icon: <AddCircleOutlineOutlined color="accentRed" />,
+      icon: <AddCircleOutlineOutlined color="accentBlue" />,
       path: "/Signup",
     },
     {
       text: "My Collection",
-      icon: <AddCircleOutlineOutlined color="accentRed" />,
+      icon: <AddCircleOutlineOutlined color="accentBlue" />,
       path: "/mycollection",
     },
   ];
@@ -111,7 +111,7 @@ export default function Layout({ children }) {
       >
         <Toolbar>
           <Typography className={classes.date}>
-            Today is the {format(new Date(), 'do MMMM Y')}
+            Current Realm date is {format(new Date(), 'MMMM do Y')}
           </Typography>
           <Typography>User Name</Typography>
           <Avatar className={classes.avatar}/>
