@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import Avatar from '@material-ui/core/Avatar'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
+import Typography from '@mui/material/Typography'
 import Link from '@material-ui/core/Link'
 // import Alert from '@material-ui/core/Alert'
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -42,7 +42,7 @@ export default function Login() {
   const classes = useStyles();
   const paperStyle = {
     padding: 20,
-    height: "60vh",
+    height: "70vh",
     width: 320,
     margin: "20px auto",
     background: backgroundColor,
@@ -110,39 +110,38 @@ export default function Login() {
         <TextField
           id="email"
           label="Email"
+          name="email"
           InputProps={{ style: { color: backgroundMain } }}
-          defaultValue="Normal"
           variant="filled"
-          color="secondary"
           margin="normal"
           type="text"
           fullWidth
-          required
           onChange={handleInputChange}
-          // value={userFormData.email}
+          value={userFormData.email}
+          required
         />
         <TextField
           id="password"
           label="Password"
           type="password"
+          name="password"
           InputProps={{ style: { color: backgroundMain } }}
-          defaultValue="Normal"
           variant="filled"
-          color="secondary"
           margin="normal"
           fullWidth
           required
           onChange={handleInputChange}
-          // value={userFormData.password}
+          value={userFormData.password}
         />
         <Button
           className={classes.button}
+          disabled={!(userFormData.email && userFormData.password)}
           type="submit"
           color="accentBlue"
           variant="contained"
           fullWidth
           endIcon={<LoginOutlinedIcon/>}
-          // disabled={!(userFormData.email && userFormData.password)}
+          
         >
          🚪Enter the Gates🚪
         </Button>
