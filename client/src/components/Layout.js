@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => {
   return {
     page: {
       background: backgroundMain,
+      // backgroundImage: "url('https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1593814681464-eef5af2b0628%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8%26auto%3Dformat%26fit%3Dcrop%26w%3D1170%26q%3D80')",
       width: '100%',
       height: '100%',
       padding: theme.spacing(3),
