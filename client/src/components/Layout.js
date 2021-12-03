@@ -12,6 +12,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import { format } from 'date-fns'
 import Avatar from '@material-ui/core/Avatar'
+import Container from '@material-ui/core/Container';
+import HHLogo from '../image/hh_logo_test.png'; 
+
 
 const drawerWidth = 240
 const backgroundColor = '#535455'
@@ -37,6 +40,7 @@ const useStyles = makeStyles((theme) => {
       background: backgroundColor,
     },
     drawer: {
+      paddingTop: 20,
       width: drawerWidth,
       background: backgroundColor,
       color: textColor,
@@ -126,11 +130,10 @@ export default function Layout({ children }) {
         classes={{ paper: classes.drawerPaper }}
         anchor="left"
       >
-        <div>
-          <Typography variant="h5" className={classes.title}>
-            Hoarder's Helper
-          </Typography>
-        </div>
+        <div className={classes.drawer} padding='10px'>
+                 <img src={HHLogo} alt="Hoarders Helper"  width='240' height='auto' margin='10'/>
+            </div>
+    
 
         {/* links/list section */}
         <List>
@@ -148,12 +151,15 @@ export default function Layout({ children }) {
         </List>
         
       </Drawer>
-
+   
       {/* main content */}
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
         { children }
       </div>
+      <div>
+      </div>
     </div>
+
   )
 }

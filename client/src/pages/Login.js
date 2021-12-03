@@ -150,7 +150,7 @@ export default function Login() {
           {" "}
           Have you started building your Hoard?
           <br />
-          <Link href="">Sign Up</Link>
+          <Link href="./Signup">Sign Up</Link>
         </Typography>
       </Paper>
     </Grid>
