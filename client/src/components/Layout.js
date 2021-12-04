@@ -85,11 +85,11 @@ export default function Layout({ children }) {
   const classes = useStyles()
   const navigate = useNavigate()
   const location = useLocation()
-  const { data } = useQuery(QUERY_ME);
-  const userData = data?.me || {};
+  const { loading, data } = useQuery(QUERY_ME);
+  // const userData = data?.me || {};
   
   console.log(data);
-  console.log(userData);
+  // console.log(userData);
 
   const menuItems = [
     {
@@ -116,6 +116,8 @@ export default function Layout({ children }) {
 
   function addUsername() {
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+    const userData = data?.me || {};
     console.log(userData);
 
     if (Auth.loggedIn()) {

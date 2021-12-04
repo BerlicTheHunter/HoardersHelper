@@ -16,7 +16,7 @@ import Signup from './pages/Signup';
 import MyCollection from './pages/MyCollection';
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -28,6 +28,8 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+
+console.log(authLink);
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
