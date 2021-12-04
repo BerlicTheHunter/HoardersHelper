@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => {
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      background: backgroundMain,
+      background: backgroundColor,
     },
     date: {
       flexGrow: 1,

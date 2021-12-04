@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const backgroundColor = "#d2d8db";
@@ -49,18 +49,21 @@ export default function Login() {
   };
   const avatarStyle = { backgroundColor: accentRed };
   
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
   useEffect(() => {
-    if (error) {
+    if(error){
       setShowAlert(true);
-    } else {
+    }
+    else{
       setShowAlert(false);
     }
-  }, [error]);
+  },
+  [error]
+  );
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -70,6 +73,7 @@ export default function Login() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -77,18 +81,19 @@ export default function Login() {
     }
 
     try {
-      const { data } = await login({
-        variables: { ...userFormData },
+      console.log("We tried to sign you in")
+      console.log(userFormData)
+      const {data} = await addUser({
+        variables: userFormData
       });
-
       console.log(data);
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+      await Auth.login(data.addUser.token);
+    } catch (err) {
+      console.error(err);
     }
 
-    // clear form values
     setUserFormData({
+      username: '',
       email: '',
       password: '',
     });
@@ -110,8 +115,8 @@ export default function Login() {
         <TextField
           id="username"
           label="Username"
+          name="username"
           InputProps={{ style: { color: backgroundMain } }}
-          //defaultValue="Normal"
           variant="filled"
           color="secondary"
           margin="normal"
@@ -119,13 +124,13 @@ export default function Login() {
           fullWidth
           required
           onChange={handleInputChange}
-          // value={userFormData.username}
+          value={userFormData.username}
         />
         <TextField
           id="email"
           label="Email"
+          name="email"
           InputProps={{ style: { color: backgroundMain } }}
-          //defaultValue="Normal"
           variant="filled"
           color="secondary"
           margin="normal"
@@ -133,21 +138,21 @@ export default function Login() {
           fullWidth
           required
           onChange={handleInputChange}
-          // value={userFormData.email}
+          value={userFormData.email}
         />
         <TextField
           id="password"
           label="Password"
           type="password"
+          name="password"
           InputProps={{ style: { color: backgroundMain } }}
-          //defaultValue="Normal"
           variant="filled"
           color="secondary"
           margin="normal"
           fullWidth
           required
           onChange={handleInputChange}
-          // value={userFormData.password}
+          value={userFormData.password}
         />
         <Button
           className={classes.button}
@@ -156,7 +161,7 @@ export default function Login() {
           variant="contained"
           fullWidth
           endIcon={<LoginOutlinedIcon/>}
-          // disabled={!(userFormData.email && userFormData.password)}
+          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
         >
          🚪Enter the Gates🚪
         </Button>
