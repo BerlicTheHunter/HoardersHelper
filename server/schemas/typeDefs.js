@@ -26,6 +26,23 @@ const typeDefs = gql`
     quantity: Int
   }
 
+  input MTGCardInput {
+    name: String
+    cmc: Int
+    colors: [String]
+    colorIdentity: [String]
+    type: String
+    types: [String]
+    subtypes: [String]
+    set: String
+    setName: String
+    number: String
+    imageUrl: String
+    rarity: String
+    mvId: String
+    id: ID!
+  }
+
   type Auth {
     token: ID!
     user: User
@@ -38,9 +55,9 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    
+    saveMTGCard(MTGCardData: MTGCardInput!): User
+    removeMTGCard(MTGCardId: ID!): User
   }
-
 `;
 
 module.exports = typeDefs;
