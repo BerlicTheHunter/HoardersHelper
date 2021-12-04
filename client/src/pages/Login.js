@@ -42,7 +42,7 @@ export default function Login() {
   const classes = useStyles();
   const paperStyle = {
     padding: 20,
-    height: "70vh",
+    height: "auto",
     width: 320,
     margin: "20px auto",
     background: backgroundColor,

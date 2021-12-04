@@ -18,13 +18,14 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
+    addUser: async ( parent, {username,email,password}) =>{
+      console.log("Tried Resolver")
+      const user = await User.create({username,email,password});
       const token = signToken(user);
-
-      return { token, user };
+      return{token, user};
     },
     login: async (parent, { email, password }) => {
+      console.log("Tried Login")
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -40,32 +41,33 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    // saveCard: async (parent, { bookData }, context) => {
-    //     if (context.user) {
-    //       const updatedUser = await User.findByIdAndUpdate(
-    //         { _id: context.user._id },
-    //         { $push: { savedBooks: bookData } },
-    //         { new: true }
-    //       );
+    saveMTGCard: async (parent, { MTGCardData }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findByIdAndUpdate(
+            { _id: context.user._id },
+            { $push: { myMTGCards: MTGCardData } },
+            { new: true }
+          );
   
-    //       return updatedUser;
-    //     }
+          return updatedUser;
+        }
   
-    //     throw new AuthenticationError('You need to be logged in!');
-    //   },
-    //   removeCard: async (parent, { cardId }, context) => {
-    //     if (context.user) {
-    //       const updatedUser = await User.findOneAndUpdate(
-    //         { _id: context.user._id },
-    //         { $pull: { savedBooks: { bookId } } },
-    //         { new: true }
-    //       );
-  
-    //       return updatedUser;
-    //     }
-  
-    //     throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError('You need to be logged in!');
       },
+      removeMTGCard: async (parent, { MTGCardId }, context) => {
+        if (context.user) {
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $pull: { myMTGCards: { id } } },
+            { new: true }
+          );
+  
+          return updatedUser;
+        }
+  
+        throw new AuthenticationError('You need to be logged in!');
+      },
+    },
 };
 
 module.exports = resolvers;
