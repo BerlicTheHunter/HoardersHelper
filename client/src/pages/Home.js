@@ -7,6 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
 const mtg = require('mtgsdk');
 
@@ -39,16 +43,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 export default function Home() {
+  
+ 
   const classes = useStyles();
   const [cardData, setCardData] = useState([]);
   const [searchName, setSearchName] = useState('');
   const [searchSet, setSearchSet] = useState('');
-  
-  const handleCardSearch = (event)=>{ 
-    event.preventDefault();
+  const [pageNumber, setPageNumber] = useState(1);
+
+  useEffect(() => { 
     if(searchName || searchSet){
-    mtg.card.where({name: searchName, setName: searchSet})
+      generateCardData(); 
+      
+    }  
+  }, [pageNumber]); 
+
+  useEffect(() => { 
+    window.scrollTo(0, 0);  
+  }, [cardData]); 
+
+  const generateCardData = ()=>{
+    mtg.card.where({name: searchName, setName: searchSet, pageSize:20, page:pageNumber})
     .then( card => {
       const searchData = card.map((card) => ({
         name: card.name,
@@ -66,17 +84,41 @@ export default function Home() {
         mvId:card.multiverseid,
         id:card.id
       }))
-    
       setCardData(searchData)
-      console.log(searchData.length)
-    })}
-    
+      
+    })
   }
+  
+  
+  const handleCardSearch = (event)=>{ 
+    if(searchName || searchSet){
+      event.preventDefault();
+      generateCardData();
+    }
+  }
+
+  const previousPage = (event) =>{
+    if(pageNumber > 1){
+      let newPage = pageNumber - 1;
+      setPageNumber(newPage);
+    }
+  };
+
+ 
+  const nextPage = (event) =>{
+    if(cardData.length === 20){
+      let newPage = (pageNumber + 1);
+      setPageNumber(newPage);
+    };
+  };
+
+  
+
   return (
      
       
-    <Container maxWidth='xl'>
-      <form className={classes.root} noValidate autoComplete="off" onSubmit={handleCardSearch}>
+    <Container maxWidth='xl' >
+      <form   className={classes.root} noValidate autoComplete="off" alignItems="center"onSubmit={handleCardSearch}>
         <TextField 
           id="searchName" 
           label="Search by Card Name" 
@@ -117,6 +159,23 @@ export default function Home() {
           </Grid>
         ))}
       </Grid>
+      {cardData.length > 0 &&
+        <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" >
+          {pageNumber > 1 &&
+            <IconButton aria-label="Previous Page"
+            onClick={previousPage}>
+              <ArrowBackIosRoundedIcon />
+            </IconButton>
+          }
+          <Typography >{pageNumber}</Typography>
+          {cardData.length === 20 &&
+            <IconButton aria-label="Next Page"
+            onClick={nextPage}>
+              <ArrowForwardIosRoundedIcon/>
+            </IconButton>
+          }
+        </Stack>
+      }
     </Container>
   )
 }
