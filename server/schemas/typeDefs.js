@@ -2,14 +2,15 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
-    _id: ID
+    _id: ID!
     username: String!
     email: String!
-    password: String!
+    password: String
     mtgCard: [MTGCard] 
   }
 
   type MTGCard{
+    _id:ID!
     name: String
     cmc: Int
     colors: [String]
@@ -24,6 +25,7 @@ const typeDefs = gql`
     rarity: String
     mvId: String
     quantity: Int
+    id: ID!
   }
 
   input MTGCardInput {
@@ -40,7 +42,7 @@ const typeDefs = gql`
     imageUrl: String
     rarity: String
     mvId: String
-    id: ID!
+    id: String
   }
 
   type Auth {

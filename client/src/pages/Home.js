@@ -12,6 +12,9 @@ import Stack from '@mui/material/Stack';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 
+// import { useQuery, useMutation } from '@apollo/client';
+// import { QUERY_ME } from '../utils/queries';
+
 const mtg = require('mtgsdk');
 
 const backgroundColor = '#757778'
@@ -115,8 +118,6 @@ export default function Home() {
   
 
   return (
-     
-      
     <Container maxWidth='xl' >
       <form   className={classes.root} noValidate autoComplete="off" alignItems="center"onSubmit={handleCardSearch}>
         <TextField 
