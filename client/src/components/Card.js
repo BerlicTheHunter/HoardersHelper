@@ -5,9 +5,17 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import Auth from "../utils/auth";
 
 export default function MakeCard({card}) {
   
+  function showAdd() {
+    if (Auth.loggedIn()) {
+      return (
+        <Button size="small">Add</Button>
+      )
+    }
+  }
 
   if(card.imageUrl == undefined) {
     card.imageUrl = "https://i.imgur.com/LdOBU1I.jpg"
@@ -39,7 +47,7 @@ export default function MakeCard({card}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add</Button>
+        {showAdd()}
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
