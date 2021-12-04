@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.5.5",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@material-ui/icons": "^4.11.2",
@@ -10,6 +11,9 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "apollo-client": "^2.6.10",
+    "apollo-link-error": "^1.1.13",
+    "apollo-link-http": "^1.5.17",
     "mtgsdk": "^0.4.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
