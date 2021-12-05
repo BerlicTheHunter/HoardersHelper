@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export default function Popup({ title, setName, image, type, rarity, openPopup, setOpenPopup }) {
+export default function Popup({ title, setName, image, type, rarity, number, openPopup, setOpenPopup }) {
 
     const classes = useStyles();
     const dialogStyle = {
@@ -75,6 +75,12 @@ export default function Popup({ title, setName, image, type, rarity, openPopup, 
                     </Typography>
                     <Typography variant="p" component="div" align='center'>
                         Type: {type}
+                    </Typography>
+                    <Typography variant="p" component="div" align='center'>
+                        Rarity: {rarity}
+                    </Typography>
+                    <Typography variant="p" component="div" align='center'>
+                         Card Number: {number}
                     </Typography>
                     <Typography variant="p" component="div" align='center'>
                         Rarity: {rarity}

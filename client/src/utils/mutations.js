@@ -25,12 +25,12 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_MTGCARD = gql`
-  mutation saveMTGcard($MTGCardData: MTGCardInput!) {
-    saveMTGcard(MTGCardData: $MTGCardData) {
+  mutation saveMTGCard($MTGCardData: MTGCardInput!) {
+    saveMTGCard(MTGCardData: $MTGCardData) {
       _id
       username
       email
-      myMTGcards {
+      mtgCard {
         name
         cmc
         colors

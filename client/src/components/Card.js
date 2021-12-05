@@ -9,6 +9,9 @@ import Auth from "../utils/auth";
 import Popup from '../components/Popup'
 import { makeStyles } from '@material-ui/core/styles';
 
+import {SAVE_MTGCARD} from "../utils/mutations"
+import { useMutation } from '@apollo/client';
+
 const useStyles = makeStyles((theme) => ({
   cardStyle: {
     padding: '10px',
@@ -16,15 +19,34 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function MakeCard({card, children}) {
-
+export default function MakeCard({card}) {
+  const [saveCard, {error}] = useMutation(SAVE_MTGCARD);
   const classes = useStyles();
   const [openPopup, setOpenPopup] = useState(false)
-  
+
+  async function handleAddCard() {
+    console.log("clicked add for" + card.name)
+    try {
+      const dataToSave = card;
+      dataToSave.quantity = 1;
+      console.log(dataToSave);
+      
+      const data = await saveCard({
+        variables: {MTGCardData: {...dataToSave}},
+      });
+      console.log(data);
+      } catch (err) {
+      console.error(err);
+      console.log(err);
+      console.log("error on save")
+    }
+  }
+
   function showAdd() {
     if (Auth.loggedIn()) {
       return (
-        <Button size="small">Add</Button>
+        <Button size="small"
+        onClick={handleAddCard}>Add</Button>
       )
     }
   }
@@ -73,10 +95,10 @@ export default function MakeCard({card, children}) {
         image={card.imageUrl}
         type={card.type}
         rarity={card.rarity}
+        number={card.number}
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        {children}
       </Popup>
     </Card>
   );
