@@ -130,18 +130,18 @@ export default function Layout({ children }) {
   return (
     <div className={classes.root}>
       {/* app bar */}
-      <AppBar 
-        position="fixed" 
+      <AppBar
+        position="fixed"
         className={classes.appBar}
         elevation={0}
         color="primary"
       >
         <Toolbar>
           <Typography className={classes.date}>
-            Current Realm date is {format(new Date(), 'MMMM do Y')}
+            Current Realm date is {format(new Date(), "MMMM do Y")}
           </Typography>
           {addUsername()}
-          <Avatar className={classes.avatar}/>
+          <Avatar className={classes.avatar} />
         </Toolbar>
       </AppBar>
 
@@ -152,36 +152,40 @@ export default function Layout({ children }) {
         classes={{ paper: classes.drawerPaper }}
         anchor="left"
       >
-        <div className={classes.drawer} padding='10px'>
-                 <img src={HHLogo} alt="Hoarders Helper"  width='240' height='auto' margin='10'/>
-            </div>
-    
+        <div className={classes.drawer} padding="10px">
+          <img
+            src={HHLogo}
+            alt="Hoarders Helper"
+            width="240"
+            height="auto"
+            margin="10"
+          />
+        </div>
 
         {/* links/list section */}
         <List>
           {menuItems.map((item) => (
-            <ListItem 
-              button 
-              key={item.text} 
+            <ListItem
+              button
+              key={item.text}
               onClick={() => navigate(item.path)}
               className={location.pathname == item.path ? classes.active : null}
             >
-              <ListItemIcon className={classes.drawerPaperIcon}>{item.icon}</ListItemIcon>
+              <ListItemIcon className={classes.drawerPaperIcon}>
+                {item.icon}
+              </ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
           ))}
         </List>
-        
       </Drawer>
-   
+
       {/* main content */}
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
-        { children }
+        {children}
       </div>
-      <div>
-      </div>
+      <div></div>
     </div>
-
-  )
+  );
 }

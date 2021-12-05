@@ -43,24 +43,25 @@ const useStyles = makeStyles((theme) => ({
   },
   multilineColor:{
     color: 'white',
-  }
+  },
+  backaway:{
+    padding: '10px',
+    margin: '10px',
+  },
 }));
 
-
-
 export default function Home() {
-  
  
   const classes = useStyles();
   const [cardData, setCardData] = useState([]);
   const [searchName, setSearchName] = useState('');
   const [searchSet, setSearchSet] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
+  const [openPopup, setOpenPopup] = useState(false)
 
   useEffect(() => { 
     if(searchName || searchSet){
       generateCardData(); 
-      
     }  
   }, [pageNumber]); 
 
@@ -88,10 +89,8 @@ export default function Home() {
         id:card.id
       }))
       setCardData(searchData)
-      
     })
   }
-  
   
   const handleCardSearch = (event)=>{ 
     if(searchName || searchSet){
@@ -107,7 +106,6 @@ export default function Home() {
     }
   };
 
- 
   const nextPage = (event) =>{
     if(cardData.length === 20){
       let newPage = (pageNumber + 1);
@@ -115,10 +113,16 @@ export default function Home() {
     };
   };
 
-  
-
   return (
-    <Container maxWidth='xl' >
+    <Container maxWidth='xl' align="center">
+      <Typography variant='h4' componenet="div" maxWidth="83%">
+        Search any Magic The Gathering card by name or set. 
+      </Typography>
+      <br/>
+      <Typography variant='h5' componenet="div" maxWidth="75%">
+        If you want to begin building and saving your collection please Login or Create an Account!
+      </Typography>
+      <br/>
       <form   className={classes.root} noValidate autoComplete="off" alignItems="center"onSubmit={handleCardSearch}>
         <TextField 
           id="searchName" 
@@ -161,7 +165,7 @@ export default function Home() {
         ))}
       </Grid>
       {cardData.length > 0 &&
-        <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" >
+        <Stack direction="row" spacing={10} alignItems="center" justifyContent="center" >
           {pageNumber > 1 &&
             <IconButton aria-label="Previous Page"
             onClick={previousPage}>
@@ -179,4 +183,5 @@ export default function Home() {
       }
     </Container>
   )
+
 }
