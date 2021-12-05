@@ -6,13 +6,36 @@ import CardMedia from '@mui/material/CardMedia';
 import { Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Auth from "../utils/auth";
+import {SAVE_MTGCARD} from "../utils/mutations"
+import { useMutation } from '@apollo/client';
 
 export default function MakeCard({card}) {
-  
+  const [saveCard, {error}] = useMutation(SAVE_MTGCARD);
+
+
+  async function handleAddCard() {
+    console.log("clicked add for" + card.name)
+    try {
+      const dataToSave = card;
+      dataToSave.quantity = 1;
+      console.log(dataToSave);
+      
+      const data = await saveCard({
+        variables: {MTGCardData: {...dataToSave}},
+      });
+      console.log(data);
+      } catch (err) {
+      console.error(err);
+      console.log(err);
+      console.log("error on save")
+    }
+  }
+
   function showAdd() {
     if (Auth.loggedIn()) {
       return (
-        <Button size="small">Add</Button>
+        <Button size="small"
+        onClick={handleAddCard}>Add</Button>
       )
     }
   }
