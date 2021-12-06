@@ -12,8 +12,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import { format } from 'date-fns'
 import Avatar from '@material-ui/core/Avatar'
-import Container from '@material-ui/core/Container';
-import HHLogo from '../image/hh_logo_test.png'; 
+//import Container from '@material-ui/core/Container'
+import HHLogo from '../image/hh_logo_test.png'
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -22,7 +22,7 @@ import Auth from "../utils/auth";
 
 const drawerWidth = 240
 const backgroundColor = '#535455'
-const backgroundMain ='#757778'
+const backgroundMain = '#757778'
 const textColor = '#FCFAFA'
 const accentBlue = '#68D8D6'
 const accentRed = '#7B0828'
@@ -77,7 +77,18 @@ const useStyles = makeStyles((theme) => {
     toolbar: theme.mixins.toolbar,
     avatar: {
       marginLeft: theme.spacing(2)
-    }
+    },
+    footBar: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      background: backgroundColor,
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: '60px',
+      fontStyle: 'italic',
+    },
   }
 })
 
@@ -175,13 +186,30 @@ export default function Layout({ children }) {
           ))}
         </List>
       </Drawer>
-
+ 
       {/* main content */}
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
         {children}
       </div>
-      <div></div>
-    </div>
+      <div>
+      </div>
+
+      <div  align='center' >
+        <footer className={classes.footBar}>
+          <Typography variant="subtitle1">
+            Hoaders Helper
+          </Typography>
+          <Typography component="p" variant="caption">
+            @2021 All right reserved
+          </Typography>
+        </footer>
+      </div>
+    </div> 
+
+
+
+
+
   );
 }

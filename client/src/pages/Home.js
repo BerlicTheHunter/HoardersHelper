@@ -165,7 +165,7 @@ export default function Home() {
         ))}
       </Grid>
       {cardData.length > 0 &&
-        <Stack direction="row" spacing={10} alignItems="center" justifyContent="center" >
+        <Stack direction="row" spacing={10} alignItems="center" justifyContent="center" paddingBottom="65px">
           {pageNumber > 1 &&
             <IconButton aria-label="Previous Page"
             onClick={previousPage}>
