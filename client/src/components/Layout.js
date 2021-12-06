@@ -86,10 +86,7 @@ export default function Layout({ children }) {
   const navigate = useNavigate()
   const location = useLocation()
   const { loading, data } = useQuery(QUERY_ME);
-  // const userData = data?.me || {};
   
-  console.log(data);
-  // console.log(userData);
 
   const menuItems = [
     {
@@ -118,7 +115,6 @@ export default function Layout({ children }) {
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
     
     const userData = data?.me || {};
-    console.log(userData);
 
     if (Auth.loggedIn()) {
       return (

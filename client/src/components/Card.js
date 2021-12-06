@@ -37,7 +37,6 @@ export default function MakeCard({card}) {
       console.log(data);
       } catch (err) {
       console.error(err);
-      console.log(err);
       console.log("error on save")
     }
   }
@@ -55,6 +54,8 @@ export default function MakeCard({card}) {
     card.imageUrl = "https://i.imgur.com/LdOBU1I.jpg"
   };
   
+ 
+
   return (
     <Card sx={{ maxWidth: 300 }} className={classes.cardStyle}>
       <CardMedia 
@@ -68,10 +69,13 @@ export default function MakeCard({card}) {
         <Typography  variant="h6" component="div" align='center'>
           {card.name}
         </Typography>
-        {/* <Typography variant="caption" color="text.secondary">
-          Card Set: {card.setName}
-        </Typography>
         <br/>
+        {/* {
+        <Typography variant="caption" color="text.secondary">
+          {addQuant}
+        </Typography>
+        } */}
+        {/* <br/>
         <Typography variant="caption" color="text.secondary">
           Type: {card.types}
         </Typography>
@@ -80,7 +84,7 @@ export default function MakeCard({card}) {
           Rarity: {card.rarity}
         </Typography> */}
       </CardContent>
-      <CardActions>
+      <CardActions style={{justifyContent: 'center'}}>
         {showAdd()}
         <Button 
           size="small"
