@@ -44,6 +44,7 @@ export const SAVE_MTGCARD = gql`
         imageUrl
         rarity
         mvId
+        quantity
         id
       }
     }

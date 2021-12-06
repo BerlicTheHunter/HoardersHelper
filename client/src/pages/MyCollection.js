@@ -52,7 +52,7 @@ export default function MyCollection() {
   const { loading, data } = useQuery(QUERY_ME);
   const userData = data?.me || {};
   const classes = useStyles();
-  const [cardData, setCardData] = useState(userData.mtgCard);
+  const [cardData, setCardData] = useState(userData.mtgCard || []);
   const [searchName, setSearchName] = useState('');
   const [searchSet, setSearchSet] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
