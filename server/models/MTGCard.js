@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const mtgCardSchema = new Schema({
   name: {
     type: String,
-    required: true,
+   
   },
   cmc: {
     type: Number,
@@ -44,13 +44,14 @@ const mtgCardSchema = new Schema({
     type: String
   },
   quantity: {
-    type: Number,
-    min: 1,
-    default: 1
+    type: Number
+  },
+  id: {
+    type: String
   }
   
 });
 
-const MTGCard = mongoose.model('MTGCard', mtgCardSchema);
+// const MTGCard = mongoose.model('MTGCard', mtgCardSchema);
 
-module.exports = MTGCard;
+module.exports = mtgCardSchema;

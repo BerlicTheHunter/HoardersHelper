@@ -6,7 +6,8 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      myMTGCards {
+      password
+      mtgCard{
         name
         cmc
         colors

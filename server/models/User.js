@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 // const CustomCollection = require('./CustomCollection');
+const mtgCardSchema = require('./MTGCard');
 
 
 
@@ -22,12 +23,12 @@ const userSchema = new Schema({
     minlength: 5
   },
   // customCollection: [CustomCollection.schema],
-  mtgCard: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'MTGCard'
-    }
-  ]
+  mtgCard: [mtgCardSchema]
+},
+{
+  toJSON: {
+    virtuals: true,
+  },
 });
 
 // set up pre-save middleware to create password

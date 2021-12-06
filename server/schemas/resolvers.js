@@ -1,15 +1,19 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User } = require('../models/index');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
+      console.log("Running ME");
+      console.log(context.user);
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select(
+        console.log(context.user._id)
+        const userData = await User.findOne({ _id: context.user._id })
+        .select(
           "-__v -password"
         );
-
+        console.log (userData);
         return userData;
       }
 
@@ -41,33 +45,37 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveMTGCard: async (parent, { MTGCardData }, context) => {
-        if (context.user) {
-          const updatedUser = await User.findByIdAndUpdate(
-            { _id: context.user._id },
-            { $push: { myMTGCards: MTGCardData } },
-            { new: true }
-          );
-  
-          return updatedUser;
-        }
-  
-        throw new AuthenticationError('You need to be logged in!');
-      },
-      removeMTGCard: async (parent, { MTGCardId }, context) => {
-        if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
-            { _id: context.user._id },
-            { $pull: { myMTGCards: { id } } },
-            { new: true }
-          );
-  
-          return updatedUser;
-        }
-  
-        throw new AuthenticationError('You need to be logged in!');
-      },
+    saveMTGCard: async (parent, {MTGCardData}, context) => {
+      console.log("save card running");
+      if (context.user) {
+        console.log("save tried")
+        console.log(MTGCardData)
+        console.log(context.user)
+        const updatedUser = await User.findByIdAndUpdate(
+          {_id: context.user._id },
+          { $push: { mtgCard: MTGCardData} },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
     },
+    removeMTGCard: async (parent, { MTGCardId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { myMTGCards: { id } } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  },
 };
 
 module.exports = resolvers;

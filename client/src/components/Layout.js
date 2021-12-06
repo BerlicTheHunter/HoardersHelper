@@ -15,6 +15,10 @@ import Avatar from '@material-ui/core/Avatar'
 //import Container from '@material-ui/core/Container'
 import HHLogo from '../image/hh_logo_test.png'
 
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
+
+import Auth from "../utils/auth";
 
 const drawerWidth = 240
 const backgroundColor = '#535455'
@@ -84,7 +88,6 @@ const useStyles = makeStyles((theme) => {
       right: 0,
       height: '60px',
       fontStyle: 'italic',
-  
     },
   }
 })
@@ -93,6 +96,8 @@ export default function Layout({ children }) {
   const classes = useStyles()
   const navigate = useNavigate()
   const location = useLocation()
+  const { loading, data } = useQuery(QUERY_ME);
+  
 
   const menuItems = [
     {
@@ -117,6 +122,18 @@ export default function Layout({ children }) {
     },
   ];
 
+  function addUsername() {
+    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    
+    const userData = data?.me || {};
+
+    if (Auth.loggedIn()) {
+      return (
+        <h4>Welcome {userData.username}</h4>
+      )
+    }
+  }
+
   return (
     <div className={classes.root}>
       {/* app bar */}
@@ -128,9 +145,9 @@ export default function Layout({ children }) {
       >
         <Toolbar>
           <Typography className={classes.date}>
-            Current Realm date is {format(new Date(), 'MMMM do Y')}
+            Current Realm date is {format(new Date(), "MMMM do Y")}
           </Typography>
-          <Typography>User Name</Typography>
+          {addUsername()}
           <Avatar className={classes.avatar} />
         </Toolbar>
       </AppBar>
@@ -142,10 +159,15 @@ export default function Layout({ children }) {
         classes={{ paper: classes.drawerPaper }}
         anchor="left"
       >
-        <div className={classes.drawer} padding='10px'>
-          <img src={HHLogo} alt="Hoarders Helper" width='240' height='auto' margin='10' />
+        <div className={classes.drawer} padding="10px">
+          <img
+            src={HHLogo}
+            alt="Hoarders Helper"
+            width="240"
+            height="auto"
+            margin="10"
+          />
         </div>
-
 
         {/* links/list section */}
         <List>
@@ -156,14 +178,15 @@ export default function Layout({ children }) {
               onClick={() => navigate(item.path)}
               className={location.pathname == item.path ? classes.active : null}
             >
-              <ListItemIcon className={classes.drawerPaperIcon}>{item.icon}</ListItemIcon>
+              <ListItemIcon className={classes.drawerPaperIcon}>
+                {item.icon}
+              </ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
           ))}
         </List>
-
       </Drawer>
-
+ 
       {/* main content */}
       <div className={classes.page}>
         <div className={classes.toolbar}></div>
@@ -180,11 +203,13 @@ export default function Layout({ children }) {
           <Typography component="p" variant="caption">
             @2021 All right reserved
           </Typography>
-        </footer></div>
-    </div>
+        </footer>
+      </div>
+    </div> 
 
 
 
 
-  )
+
+  );
 }

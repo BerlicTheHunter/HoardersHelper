@@ -5,7 +5,7 @@ const typeDefs = gql`
     _id: ID
     username: String!
     email: String!
-    password: String!
+    password: String
     mtgCard: [MTGCard] 
   }
 
@@ -24,6 +24,7 @@ const typeDefs = gql`
     rarity: String
     mvId: String
     quantity: Int
+    id: String
   }
 
   input MTGCardInput {
@@ -40,7 +41,8 @@ const typeDefs = gql`
     imageUrl: String
     rarity: String
     mvId: String
-    id: ID!
+    quantity: Int
+    id: String
   }
 
   type Auth {
