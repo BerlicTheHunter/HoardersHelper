@@ -58,11 +58,11 @@ export default function MyCollection() {
   const [pageNumber, setPageNumber] = useState(1);
   const [openPopup, setOpenPopup] = useState(false)
 
-  useEffect(() => { 
-    if(searchName || searchSet){
-      generateCardData(); 
-    }  
-  }, [pageNumber]); 
+  // useEffect(() => { 
+  //   if(searchName || searchSet){
+  //     generateCardData(); 
+  //   }  
+  // }, [pageNumber]); 
 
   useEffect(() => { 
     window.scrollTo(0, 0);  
@@ -72,12 +72,12 @@ export default function MyCollection() {
     setCardData(userData.mtgCard)
   }
   
-  const handleCardSearch = (event)=>{ 
-    if(searchName || searchSet){
-      event.preventDefault();
-      generateCardData();
-    }
-  }
+  // const handleCardSearch = (event)=>{ 
+  //   if(searchName || searchSet){
+  //     event.preventDefault();
+  //     generateCardData();
+  //   }
+  // }
 
   const previousPage = (event) =>{
     if(pageNumber > 1){
@@ -134,6 +134,7 @@ export default function MyCollection() {
           Displaying {cardData.length} Cards
       </Typography>
       <Grid container className={classes.results}>
+        {generateCardData}
         {cardData.map(card =>(
           <Grid item key={card.id} xs={12} md={4} lg={3}>
             <Card card={card}/>

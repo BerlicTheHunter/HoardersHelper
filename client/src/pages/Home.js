@@ -70,6 +70,7 @@ export default function Home() {
   }, [cardData]); 
 
   const generateCardData = ()=>{
+    
     mtg.card.where({name: searchName, setName: searchSet, pageSize:20, page:pageNumber})
     .then( card => {
       const searchData = card.map((card) => ({
@@ -95,7 +96,12 @@ export default function Home() {
   const handleCardSearch = (event)=>{ 
     if(searchName || searchSet){
       event.preventDefault();
-      generateCardData();
+      if(pageNumber > 1){
+        setPageNumber(1);
+      }
+      else{
+        generateCardData();
+      }
     }
   }
 
