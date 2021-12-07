@@ -14,6 +14,10 @@ import { format } from 'date-fns'
 import Avatar from '@material-ui/core/Avatar'
 //import Container from '@material-ui/core/Container'
 import HHLogo from '../image/hh_logo_test.png'
+import Button from '@material-ui/core/Button'
+import Box from '@material-ui/core/Box'
+import { styled } from '@mui/material/styles'
+import { purple } from '@mui/material/colors'
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -122,14 +126,37 @@ export default function Layout({ children }) {
     },
   ];
 
+  const ColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: accentRed,
+    '&:hover': {
+      backgroundColor: '#552a2a',
+    },
+  }));
+
   function addUsername() {
     // const token = Auth.loggedIn() ? Auth.getToken() : null;
-    
     const userData = data?.me || {};
 
     if (Auth.loggedIn()) {
       return (
-        <h4>Welcome {userData.username}</h4>
+        <Box
+          margin="10px"
+          width="50%"
+          display="flex"
+          justifyContent="space-between"
+          >
+          <Typography variant="h6">
+            Welcome {userData.username}
+          </Typography>
+          <ColorButton 
+            onClick={Auth.logout}
+            variant="contained"
+            
+            >
+              Logout
+          </ColorButton>
+        </Box>
       )
     }
   }
@@ -145,7 +172,7 @@ export default function Layout({ children }) {
       >
         <Toolbar>
           <Typography className={classes.date}>
-            Current Realm date is {format(new Date(), "MMMM do Y")}
+            Current Realm Date is {format(new Date(), "MMMM do Y")}
           </Typography>
           {addUsername()}
           <Avatar className={classes.avatar} />
@@ -197,7 +224,7 @@ export default function Layout({ children }) {
 
       <div  align='center' >
         <footer className={classes.footBar}>
-          <Typography variant="subtitle1">
+          <Typography variant="subtitle1" color="textColor">
             Hoaders Helper
           </Typography>
           <Typography component="p" variant="caption">
