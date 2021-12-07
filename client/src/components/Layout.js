@@ -224,8 +224,8 @@ export default function Layout({ children }) {
 
       <div  align='center' >
         <footer className={classes.footBar}>
-          <Typography variant="subtitle1" color="textColor">
-            Hoaders Helper
+          <Typography variant="subtitle1">
+            Hoarders Helper
           </Typography>
           <Typography component="p" variant="caption">
             @2021 All right reserved
