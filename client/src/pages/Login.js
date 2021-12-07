@@ -10,6 +10,8 @@ import Link from '@material-ui/core/Link'
 // import Alert from '@material-ui/core/Alert'
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
+import { styled } from '@mui/material/styles'
+import { purple } from '@mui/material/colors'
 
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -94,6 +96,14 @@ export default function Login() {
     });
   };
 
+  const BlueColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: '#58b7b5',
+    '&:hover': {
+      backgroundColor: '#4d9f9e',
+    },
+  }));
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -101,7 +111,7 @@ export default function Login() {
           <Avatar style={avatarStyle}>
             <LockOutlinedIcon />
           </Avatar>
-          <h2>Sign In</h2>
+          <h2>Login</h2>
         </Grid>
         <form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* <Alert severity="error" dismissible onClose={() => setShowAlert(false)} show={showAlert} >
@@ -133,24 +143,23 @@ export default function Login() {
           onChange={handleInputChange}
           value={userFormData.password}
         />
-        <Button
+        <BlueColorButton
           className={classes.button}
           disabled={!(userFormData.email && userFormData.password)}
           type="submit"
           color="accentBlue"
           variant="contained"
           fullWidth
-          endIcon={<LoginOutlinedIcon/>}
-          
+          // endIcon={<LoginOutlinedIcon/>}
         >
          🚪Enter the Gates🚪
-        </Button>
+        </BlueColorButton>
         </form>
-        <Typography>
+        <Typography align="center">
           {" "}
           Have you started building your Hoard?
           <br />
-          <Link href="./Signup">Sign Up</Link>
+          <Link href="./Signup">Create Your Account</Link>
         </Typography>
       </Paper>
     </Grid>

@@ -11,6 +11,8 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
+import { styled } from '@mui/material/styles'
+import { purple } from '@mui/material/colors'
 
 // import { useQuery, useMutation } from '@apollo/client';
 // import { QUERY_ME } from '../utils/queries';
@@ -119,6 +121,14 @@ export default function Home() {
     };
   };
 
+  const BlueColorButton = styled(Button)(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: '#58b7b5',
+    '&:hover': {
+      backgroundColor: '#4d9f9e',
+    },
+  }));
+
   return (
     <Container maxWidth='xl' align="center">
       <Typography variant='h4' componenet="div" maxWidth="83%">
@@ -150,7 +160,7 @@ export default function Home() {
           margin="normal"
           onChange={(event)=> setSearchSet(event.target.value)} 
         />    
-        <Button className={classes.button}
+        <BlueColorButton className={classes.button}
           variant="outlined"
           onClick={()=> console.log("Search Clicked")}
           type="submit"
@@ -158,7 +168,7 @@ export default function Home() {
           endIcon={<SearchIcon/>}
         >
           Search
-        </Button>
+        </BlueColorButton>
       </form>
       <Typography variant="caption" color="textColor" className={classes.results}>
           Displaying {cardData.length} Cards
