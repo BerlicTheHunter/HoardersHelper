@@ -12,7 +12,7 @@ SO THAT I can keep a list of the cards I have
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
-- [question](#questions)
+- [Question](#questions)
 
 
 ## Technology Stack:
@@ -25,7 +25,11 @@ SO THAT I can keep a list of the cards I have
 
 
 ### Usage:
-* Instructions on how to login
+[HoardersHelper](https://hoardershelper.herokuapp.com/)
+<br/>
+Create an account to add cards and view your collection
+
+![Home Screen](./screenshots/screen.png)
 
 
 ## Licence:
